@@ -1,0 +1,28 @@
+{
+    "name": "Ollama Development Container",
+    "image": "ollama/ollama:latest",
+    "runArgs": [
+      "-d",
+      "-v", "ollama:/root/.ollama",
+      "-p", "11434:11434"
+    ],
+    "postCreateCommand": "docker exec -it ollama ollama run llama2",
+    "remoteUser": "root",
+    "features": {
+      "ghcr.io/devcontainers/features/docker-in-docker:1": {
+        "version": "latest"
+      }
+    },
+    "customizations": {
+      "vscode": {
+        "extensions": [
+          "ms-azuretools.vscode-docker",
+          "ms-vscode-remote.remote-containers"
+        ]
+      }
+    },
+    "mounts": [
+      "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"
+    ]
+  }
+  

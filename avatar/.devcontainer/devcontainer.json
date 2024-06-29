@@ -1,0 +1,27 @@
+{
+  "name": "Python Flask API",
+  "image": "mcr.microsoft.com/vscode/devcontainers/python:3.9",
+  "features": {
+      "ghcr.io/devcontainers/features/docker-in-docker:2": {},
+      "ghcr.io/devcontainers/features/python:1": {}
+  },
+  "postCreateCommand": "pip install flask",
+  "settings": {
+      "python.pythonPath": "/usr/local/bin/python",
+      "terminal.integrated.defaultProfile.linux": "/bin/bash"
+  },
+  "forwardPorts": [5000],
+  "mounts": [
+      "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached"
+  ],
+  "remoteUser": "vscode",
+  "extensions": [
+      "ms-python.python",
+      "ms-python.vscode-pylance"
+  ],
+  "runArgs": [
+      "--init",
+      "--privileged"
+  ],
+  "containerUser": "vscode"
+}
