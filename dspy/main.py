@@ -81,22 +81,33 @@ generate_answer_with_chain_of_thought = dspy.ChainOfThought(BasicQA)
 
 # retrieve("When was the first FIFA World Cup held?").passages[0]
 
-from flask import Flask, request, jsonify
+from fastapi import FastAPI, HTTPException
+from pydantic import BaseModel
 
-app = Flask(__name__)
+app = FastAPI()
 
-@app.route('/generate', methods=['POST'])
-def generate():
-    data = request.get_json()
-    question = data.get('question', '')
-    question = "When was the first FIFA World Cup held?"
+class Question(BaseModel):
+    question: str
+
+@app.post("/generate")
+def generate(data: Question):
+    question = data.question
     print(question)
+
     if not question:
-        return jsonify({'error': 'No question provided'}), 400
-    
+        raise HTTPException(status_code=400, detail="No question provided")
 
     pred = generate_answer_with_chain_of_thought(question=question)
-    return jsonify({'prediction': pred.answer})
+    return {"prediction": pred.answer}
+# test curl -X POST "http://localhost:8000/generate" -H "Content-Type: application/json" -d '{"question": "When was the first FIFA World Cup held?"}'
 
-if __name__ == '__main__':
-    app.run(debug=False)
+
+# Note: FastAPI runs using a different method (e.g., uvicorn), not `app.run()`.
+#uvicorn main:app --reload
+#fastapi dev main.py
+
+@app.get("/health")
+def health_check():
+    return {"status": "running"}
+
+#test - curl -X GET "http://localhost:8000/health"

@@ -1,11 +1,11 @@
 {
-    "name": "Python Flask API",
+    "name": "Python dspy - fastapi",
     "image": "mcr.microsoft.com/vscode/devcontainers/python:3.11",
     "features": {
       "ghcr.io/devcontainers/features/docker-in-docker:2": {},
       "ghcr.io/devcontainers/features/python:1": {}
     },
-    "postCreateCommand": "pip install flask && pip install dspy-ai && pip install dspy-ai[chromadb]",
+    "postCreateCommand": "pip install fastapi && pip install dspy-ai && pip install dspy-ai[chromadb]",
     "settings": {
       "python.pythonPath": "/usr/local/bin/python",
       "terminal.integrated.defaultProfile.linux": "/bin/bash"

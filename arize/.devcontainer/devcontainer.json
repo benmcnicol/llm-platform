@@ -10,7 +10,7 @@
       "python.pythonPath": "/usr/local/bin/python",
       "terminal.integrated.defaultProfile.linux": "/bin/bash"
     },
-    "forwardPorts": [5000],
+    "forwardPorts": [6006],
     "mounts": [
       {
         "source": "${localWorkspaceFolder}",
