@@ -1,6 +1,6 @@
 {
     "name": "Python Flask API",
-    "image": "mcr.microsoft.com/vscode/devcontainers/python:3.11",
+    "image": "mcr.microsoft.com/vscode/devcontainers/python:3.9",
     "features": {
       "ghcr.io/devcontainers/features/docker-in-docker:2": {},
       "ghcr.io/devcontainers/features/python:1": {}
